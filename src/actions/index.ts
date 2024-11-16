@@ -1,10 +1,7 @@
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
 import { generateBrandNames } from "@/server";
-
-type AIResponse = {
-  brandNames: string[]
-}
+import type { AIResponse } from "@/types";
 
 export const server = {
   generateNames: defineAction({
@@ -28,7 +25,7 @@ export const server = {
         return {
           error: true,
           message: "Failed to generate brand name.",
-          data: []
+          data: [] as unknown as AIResponse
         }
       }
     },
